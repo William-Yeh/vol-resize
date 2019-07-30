@@ -1,0 +1,13 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: expansion
+parameters:
+  type: pd-standard
+provisioner: kubernetes.io/gce-pd
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+
+
+# @see https://kubernetes.io/docs/concepts/storage/storage-classes/#gce-pd
+# @see https://kubernetes.io/blog/2018/07/12/resizing-persistent-volumes-using-kubernetes/

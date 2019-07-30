@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voltest
+  labels:
+    app: voltest
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voltest
+
+  template:   # pod definition
+    metadata:
+      labels:
+        app: voltest
+    spec:
+      containers:
+        - name: voltest
+          image: williamyeh/voltest
+          volumeMounts:
+            - mountPath: "/mnt"
+              name: voltest
+
+      volumes:
+        - name: voltest
+          persistentVolumeClaim:
+            claimName: voltest
